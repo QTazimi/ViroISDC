@@ -1,0 +1,6 @@
+tensorflow==1.11.0   # CPU Version of TensorFlow.
+# tensorflow-gpu==1.11.0  # GPU version of TensorFlow.
+pysam==0.15.4
+numpy==1.16.0
+
+
