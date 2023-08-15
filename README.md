@@ -1,10 +1,14 @@
-##VirolSDC
-##installation
+# VirolSDC
+
+This is an HBV integration site detection tool.
+
+## Installation
+
 This tool requires a virtual environment on conda.<br>
 Download the source code from github.
 ```
-git clone git@github.com:Lav-i/GNNImpute.git
-cd GNNImpute
+git clone https://github.com/QTazimi/ViroISDC.git
+cd ViroISDC
 ```
 Create a python virtual environment and install the required packages. 
 If your device is cuda available, you can choose to use tensorflow with gpu.
@@ -13,15 +17,18 @@ conda create -n virolsdc python=3.6
 conda activate virolsdc
 pip install -r requirements.txt
 ```
-##Prepare data
-##Download
+## Prepare data
+
+## Download
+
 First, use prefetch to download the SRA sample data in batches, 
 and then use fastq-dump to convert the sra data into fastq format. Examples are as follows:
 ```
 prefetch --option-file SraAccList.txt
 fastq-dump  sample.sra --split-3 --gzip -O /home/data/sample/
 ```
-##Preprocess
+## Preprocess
+
 Before preprocessing the data, please ensure that you have installed bwa, trimmomatic, and samtools.
 Additionally, you will need the human reference genome sequence GRCh37_latest_genomic.fna as well as the reference sequence for Hepatitis B virus (hbv.fasta). 
 Below is an example of data preprocessing.
@@ -37,8 +44,11 @@ samtools index samplefil_sort.bam
 ```
 The output file (samplefile_sort.bam) contains preprocessed data that can be directly used for integration site detection. 
 Furthermore, the aforementioned data preprocessing steps can be scripted into a shell script for batch processing.
-##Usage
-##Quick Start
+
+## Usage
+
+## Quick Start
+
 ```
 python ViroISDC/get_integration.py \
 --task_name=hbv \
@@ -59,6 +69,8 @@ If further filtering is required, you can use the data_process/filter_tool.py fo
 python data_process/filter_tool.py -op VirolSDC/result/integrations.csv -sp VirolSDC/result/integrations_filter.csv
 ```
 The integrations_filter.csv contains the filtered results.
-##Example
-gen_filbam.sh is an example script for data preprocessing.<br>
-runme.sh is an example script for running the integration site detection tool.
+
+## Example
+
+[gen_filbam.sh](https://github.com/QTazimi/ViroISDC/blob/main/bash/gen_filbam.sh) is an example script for data preprocessing.<br>
+[runme.sh](https://github.com/QTazimi/ViroISDC/blob/main/bash/runme.sh) is an example script for running the integration site detection tool.
