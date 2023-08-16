@@ -33,7 +33,7 @@ Before preprocessing the data, please ensure that you have installed bwa, trimmo
 Additionally, you will need the human reference genome sequence GRCh37_latest_genomic.fna as well as the reference sequence for Hepatitis B virus (hbv.fasta). 
 Below is an example of data preprocessing.
 ```
-Trimmomatic-0.39/trimmomatic-0.39.jar PE -threads 2 -phred33 sample_1.fastq.gz sample_2.fastq.gz LEADING:5 SLIDINGWINDOW:5:20 MINLEN:20 -baseout  sample_trim.fastq.gz
+java -jar /home/package/Trimmomatic-0.39/trimmomatic-0.39.jar PE -threads 2 -phred33 sample_1.fastq.gz sample_2.fastq.gz LEADING:5 SLIDINGWINDOW:5:20 MINLEN:20 -baseout  sample_trim.fastq.gz
 bwa mem -t 4 -R "@RG\tID:hbv\tPL:illumina\tSM:hbv" hbv.fasta sample_trim_1P.fastq.gz   sample_trim_1P.fastq.gz \
             | samtools view -bS - > sample.hbv.bam
 samtools view -bF 4 sample.hbv.bam | samtools fastq -1 sample.hbvmap.r1.fq -2 sample.hbvmap.r2.fq -s sample_single.fq -
