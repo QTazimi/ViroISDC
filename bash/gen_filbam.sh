@@ -25,7 +25,7 @@ do
     
         echo $file
         mkdir -p /home/HBV/SRA335342/${file}/bio_bert
-        #java -jar /home/package/Trimmomatic-0.39/Trimmomatic-0.39/trimmomatic-0.39.jar PE -threads 2 -phred33 /home/HBV/SRA335342/${file}/${file}_1.fastq.gz /home/HBV/SRA335342/${file}/${file}_2.fastq.gz LEADING:5 SLIDINGWINDOW:5:20 MINLEN:20 -baseout  /home/HBV/SRA335342/${file}/${file}_trim.fastq.gz
+        #java -jar /home/package/Trimmomatic-0.39/trimmomatic-0.39.jar PE -threads 2 -phred33 /home/HBV/SRA335342/${file}/${file}_1.fastq.gz /home/HBV/SRA335342/${file}/${file}_2.fastq.gz LEADING:5 SLIDINGWINDOW:5:20 MINLEN:20 -baseout  /home/HBV/SRA335342/${file}/${file}_trim.fastq.gz
 
         bwa mem -t 4 -R "@RG\tID:hbv\tPL:illumina\tSM:hbv" /home/HBV_wgsim/ref/10791.fasta /home/HBV/SRA335342/${file}/${file}_trim_1P.fastq.gz   /home/HBV/SRA335342/${file}/${file}_trim_2P.fastq.gz \
             | samtools view -bS - > /home/HBV/SRA335342/${file}/bio_bert/${file}.hbv.bam
